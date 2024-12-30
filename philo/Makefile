@@ -13,10 +13,10 @@
 # VARIABLES
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -O3 -g3
+CFLAGS = -O2 -pthread
 
 # SOURCES
-SRCS = main.c utils.c #simulation.c init.c error_handling.c
+SRCS = main.c utils.c  init.c error_handling.c monitoring.c routine_actions.c
 # OBJECTS
 OBJS = $(SRCS:.c=.o)
 

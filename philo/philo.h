@@ -6,7 +6,7 @@
 /*   By: lpolizzi <lpolizzi@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 18:59:28 by lpolizzi          #+#    #+#             */
-/*   Updated: 2024/12/27 23:33:37 by lpolizzi         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:48:29 by lpolizzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,36 @@ typedef struct s_data
 	t_philo			philo[MAX_PHILO];
 }					t_data;
 
-int		ft_atoi(const char *str);
-size_t	get_time(void);
-size_t	time_diff(size_t past, size_t present);
-void	ft_usleep(size_t time);
-void	print_action(t_data *data, int id, char *action);
+/* error_handling.c */
+void				exit_simulation(t_data *data, char *error);
+bool				all_digit(char *str);
+int					args_invalid(int ac, char **av);
+
+/* utils.c */
+int					ft_atoi(const char *str);
+size_t				get_time(void);
+void				ft_usleep(size_t time);
+void				print_action(t_data *data, int id, char *action);
+
+/* init.c */
+void				init_data(t_data *data, char **av);
+void				init_forks(t_data *data);
+void				init_philo(t_data *data);
+
+/* main.c */
+void				create_threads(t_data *data);
+
+/* monitoring.c */
+int					check_time_diff(t_philo *philo, size_t time_to_die);
+bool				check_death(t_data *data);
+bool				check_all_ate(t_data *data);
+void				*monitoring(void *arg);
+
+/* routine_actions.c */
+bool				is_philo_dead(t_data *data);
+void				think(t_philo *philo);
+void				dream(t_philo *philo);
+void				eat(t_philo *philo);
+void				*philo_routine(void *arg);
 
 #endif

@@ -21,6 +21,8 @@ int	ft_atoi(const char *str)
 	i = 0;
 	sign = 1;
 	res = 0;
+	if (!str)
+		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -39,25 +41,20 @@ size_t	get_time(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-size_t	time_diff(size_t past, size_t present)
-{
-	return (present - past);
-}
-
 void	ft_usleep(size_t time)
 {
 	size_t	start;
 
 	start = get_time();
-	while (time_diff(start, get_time()) < time)
+	while ((get_time() - start) < time)
 		usleep(500);
 }
 
 void	print_action(t_data *data, int id, char *action)
 {
-	pthread_mutex_lock(&(data->printing_lock));
+	pthread_mutex_lock(&data->printing_lock);
 	if (!data->dead_philo)
-		printf("%zu %d %s\n", time_diff(data->start_time, get_time()), id + 1,
+		printf("%zu %d %s\n", (get_time() - data->start_time), id,
 			action);
-	pthread_mutex_unlock(&(data->printing_lock));
+	pthread_mutex_unlock(&data->printing_lock);
 }
