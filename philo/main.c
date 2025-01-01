@@ -17,14 +17,18 @@ void	create_threads(t_data *data)
 	pthread_t	observer_thread;
 	int			i;
 
-	if (pthread_create(&observer_thread, NULL, &monitoring, data))
-		exit_simulation(data, "Error: Failed to create observer thread\n");
+	data->start_time = get_time();
 	i = -1;
 	while (++i < data->nb_philo)
+	{
+		data->philo[i].last_meal = get_time();
 		if (pthread_create(&data->philo[i].thread_id, NULL, &philo_routine,
-				&data->philo[i]))
+					 &data->philo[i]))
 			exit_simulation(data,
-				"Error: Failed to create philosopher thread\n");
+				   "Error: Failed to create philosopher thread\n");
+	}
+	if (pthread_create(&observer_thread, NULL, &monitoring, data))
+		exit_simulation(data, "Error: Failed to create observer thread\n");
 	if (pthread_join(observer_thread, NULL))
 		exit_simulation(data, "Error: Failed to join observer thread\n");
 	i = -1;

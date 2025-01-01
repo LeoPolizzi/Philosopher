@@ -13,7 +13,7 @@
 # VARIABLES
 NAME = philo
 CC = cc
-CFLAGS = -O2 -pthread
+CFLAGS = -O3 -pthread
 
 # SOURCES
 SRCS = main.c utils.c  init.c error_handling.c monitoring.c routine_actions.c

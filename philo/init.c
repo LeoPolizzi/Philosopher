@@ -23,7 +23,7 @@ void	init_data(t_data *data, char **av)
 	else
 		data->nb_eat = -1;
 	data->dead_philo = false;
-	data->start_time = get_time();
+	data->start_time = 0;
 	pthread_mutex_init(&data->printing_lock, NULL);
 	pthread_mutex_init(&data->death_lock, NULL);
 	pthread_mutex_init(&data->eat_lock, NULL);
@@ -48,7 +48,7 @@ void	init_philo(t_data *data)
 		data->philo[i].id = i + 1;
 		data->philo[i].is_eating = false;
 		data->philo[i].meal_count = 0;
-		data->philo[i].last_meal = get_time();
+		data->philo[i].last_meal = 0;
 		data->philo[i].left_fork = &data->forks[i];
 		if (i == 0)
 			data->philo[i].right_fork = &data->forks[data->nb_philo - 1];
