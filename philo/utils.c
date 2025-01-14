@@ -47,7 +47,7 @@ void	ft_usleep(size_t time)
 
 	start = get_time();
 	while ((get_time() - start) < time)
-		usleep(500);
+		usleep(50);
 }
 
 void	print_action(t_data *data, int id, char *action)
