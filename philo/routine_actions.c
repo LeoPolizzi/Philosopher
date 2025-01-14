@@ -64,7 +64,7 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (!philo->id % 2)
+	if (philo->id % 2)
 		ft_usleep(1);
 	while (!is_philo_dead(philo->data))
 	{
