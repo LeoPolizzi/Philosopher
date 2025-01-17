@@ -23,9 +23,9 @@ void	create_threads(t_data *data)
 	{
 		data->philo[i].last_meal = get_time();
 		if (pthread_create(&data->philo[i].thread_id, NULL, &philo_routine,
-					 &data->philo[i]))
+				&data->philo[i]))
 			exit_simulation(data,
-				   "Error: Failed to create philosopher thread\n");
+				"Error: Failed to create philosopher thread\n");
 	}
 	if (pthread_create(&observer_thread, NULL, &monitoring, data))
 		exit_simulation(data, "Error: Failed to create observer thread\n");
