@@ -13,7 +13,7 @@
 # VARIABLES
 NAME = philo
 CC = cc
-CFLAGS = -O3 -pthread
+CFLAGS = -O3 -pthread -Wall -Wextra -Werror #-fsanitize=thread
 
 # SOURCES
 SRCS = main.c utils.c  init.c error_handling.c monitoring.c routine_actions.c

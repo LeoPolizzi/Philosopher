@@ -53,8 +53,10 @@ void	ft_usleep(size_t time)
 void	print_action(t_data *data, int id, char *action)
 {
 	pthread_mutex_lock(&data->printing_lock);
+	pthread_mutex_lock(&data->death_lock);
 	if (!data->dead_philo)
 		printf("%zu %d %s\n", (get_time() - data->start_time), id,
 			action);
+	pthread_mutex_unlock(&data->death_lock);
 	pthread_mutex_unlock(&data->printing_lock);
 }

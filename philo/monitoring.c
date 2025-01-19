@@ -33,8 +33,8 @@ bool	check_death(t_data *data)
 	{
 		if (check_time_diff(&data->philo[i], data->time_to_die))
 		{
-			pthread_mutex_lock(&data->death_lock);
 			print_action(data, i + 1, "died");
+			pthread_mutex_lock(&data->death_lock);
 			data->dead_philo = true;
 			pthread_mutex_unlock(&data->death_lock);
 			return (true);
