@@ -36,12 +36,6 @@ void	eat_even(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
 	print_action(philo->data, philo->id, "has taken a fork");
-	if (philo->data->nb_philo == 1)
-	{
-		ft_usleep(philo->data->time_to_die);
-		pthread_mutex_unlock(philo->right_fork);
-		return ;
-	}
 	pthread_mutex_lock(philo->left_fork);
 	print_action(philo->data, philo->id, "has taken a fork");
 	philo->is_eating = true;
